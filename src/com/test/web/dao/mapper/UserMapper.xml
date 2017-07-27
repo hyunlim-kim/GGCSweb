@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.web.dao.UserDao">
+
+	<select id="selectUSER" resultType="userBean" parameterType="userBean">
+		select
+			USER_ID AS userId,
+			USER_PW AS userPw
+			
+		from USER
+		where USER_ID=#{userId}
+	</select>
+	
+	
+	<select id="selectUserList" resultType="userBean">
+		SELECT
+			USER_ID AS userId,
+			USER_PW AS userPw
+		FROM USER
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertUSER" parameterType="userBean">
+		INSERT INTO USER
+			(
+				USER_ID, 
+				USER_PW
+			) 
+		VALUES
+			(
+				#{userId},
+				#{userPw}
+			)	
+	</insert>
+	
+	<!-- 회원수정 -->
+	<update id="updateUSER" parameterType="userBean">
+		UPDATE USER
+	 	SET	 		
+	 		USER_PW = #{userPw}
+		WHERE
+			USER_ID = #{userId}
+	</update>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteUSER" parameterType="userBean">
+		DELETE FROM USER WHERE USER_ID = #{userId}
+	</delete>
+	
+	
+	<select id="loginProc" parameterType="userBean" resultType="userBean">
+		SELECT
+			USER_ID AS userId,
+			USER_PW AS userPw
+			
+		FROM USER
+		WHERE
+			USER_ID=#{userId} AND
+			USER_PW=#{userPw}
+	</select>
+	
+ 
+</mapper>
