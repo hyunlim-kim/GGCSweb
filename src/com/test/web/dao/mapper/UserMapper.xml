@@ -3,7 +3,7 @@
 
 <mapper namespace="com.test.web.dao.UserDao">
 
-	<select id="selectUSER" resultType="userBean" parameterType="userBean">
+	<select id="selectUser" resultType="UserBean" parameterType="UserBean">
 		select
 			USER_ID AS userId,
 			USER_PW AS userPw
@@ -13,7 +13,7 @@
 	</select>
 	
 	
-	<select id="selectUserList" resultType="userBean">
+	<select id="selectUserList" resultType="UserBean">
 		SELECT
 			USER_ID AS userId,
 			USER_PW AS userPw
@@ -21,7 +21,7 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="insertUSER" parameterType="userBean">
+	<insert id="insertUser" parameterType="UserBean">
 		INSERT INTO USER
 			(
 				USER_ID, 
@@ -35,7 +35,7 @@
 	</insert>
 	
 	<!-- 회원수정 -->
-	<update id="updateUSER" parameterType="userBean">
+	<update id="updateUser" parameterType="UserBean">
 		UPDATE USER
 	 	SET	 		
 	 		USER_PW = #{userPw}
@@ -44,12 +44,12 @@
 	</update>
 	
 	<!-- 회원삭제 -->
-	<delete id="deleteUSER" parameterType="userBean">
+	<delete id="deleteUser" parameterType="UserBean">
 		DELETE FROM USER WHERE USER_ID = #{userId}
 	</delete>
 	
 	
-	<select id="loginProc" parameterType="userBean" resultType="userBean">
+	<select id="loginProc" parameterType="UserBean" resultType="UserBean">
 		SELECT
 			USER_ID AS userId,
 			USER_PW AS userPw
