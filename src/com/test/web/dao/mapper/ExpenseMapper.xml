@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.web.dao.ExpenseDao">
+
+	<select id="selectExpense" resultType="ExpenseBean" parameterType="ExpenseBean">
+		select
+			SEX AS Sex,
+			MONEY AS Money,
+			DETAIL AS Detail,
+			PLACE AS Place,
+			MEMO AS Memo,
+			MONEY_ID AS Money_Id,
+			DATE AS Date
+			
+		from EXPENSE
+		where DATE=#{Date}
+	</select>
+	
+	
+	<select id="selectExpenseList" resultType="ExpenseBean" parameterType="ExpenseBean">
+		select
+			ex.SEX AS Sex,
+			ex.MONEY AS Money,
+			ex.DETAIL AS Detail,
+			ex.PLACE AS Place,
+			ex.MEMO AS Memo,
+			ex.MONEY_ID AS Money_Id,
+			ex.DATE AS Date
+			
+		from EXPENSE ex LEFT OUTER JOIN USER u ON ex.USER_ID = u.USER_ID
+		where u.USER_ID = #{userId}
+	</select>
+	
+	<!-- 사용내역 등록  -->
+	<insert id="insertExpense" parameterType="ExpenseBean">
+		INSERT INTO EXPENSE
+			(
+				SEX,
+				MONEY,
+				DETAIL,
+				PLACE,
+				MEMO,
+				DATE,
+				USER_ID
+			) 
+		VALUES
+			(
+				#{Sex},
+				#{Money},
+				#{Detail},
+				#{Place},
+				#{Memo},
+				#{Date},
+				#{userId}
+			)	
+	</insert>
+	
+	<!--사용내역 수정 -->
+	<update id="updateExpense" parameterType="ExpenseBean">
+		UPDATE EXPENSE
+	 	SET	 		
+	 		SEX = #{Sex},
+	 		MONEY = #{Money},
+	 		DETAIL = #{Detail},
+	 		PLACE = #{Place},
+	 		MEMO = #{Memo},
+	 		DATE = #{Date}	 		
+	 		
+		WHERE
+			MONEY_ID = #{Money_Id}
+	</update>
+	
+	<!-- 사용내역 삭제 -->
+	<delete id="deleteExpense" parameterType="ExpenseBean">
+		DELETE FROM EXPENSE WHERE MONEY_ID = #{Money_Id}
+	</delete>
+	
+	
+ 
+</mapper>
