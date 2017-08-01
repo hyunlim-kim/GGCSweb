@@ -45,12 +45,12 @@ public class ExpenseController {
 	//회원 목록 부분 
 	@RequestMapping("/rest/selectExpenseList")
 	@ResponseBody
-	public Map<String, Object> selectExpenseList() {
+	public Map<String, Object> selectExpenseList(ExpenseBean mbean) {
 
 		Map<String, Object> resMap = new HashMap<String, Object>();
 
 		try {
-			List<ExpenseBean> list = ExpenseDao.selectExpenseList();
+			List<ExpenseBean> list = ExpenseDao.selectExpenseList(mbean);
 
 			resMap.put("result", "ok");
 			resMap.put("ExpenseList", list);

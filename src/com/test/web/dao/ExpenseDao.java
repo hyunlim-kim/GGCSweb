@@ -7,12 +7,12 @@ import com.test.web.bean.ExpenseBean;
 
 public interface ExpenseDao {
 
-	/**목록 보*/
+	/**목록 보기 */
 	public ExpenseBean selectExpense(ExpenseBean bean);
 	
-	public List<ExpenseBean> selectExpenseList();
+	public List<ExpenseBean> selectExpenseList(ExpenseBean bean);
 	
-	/** 목록 등 */
+	/** 목록 등록  */
 	public int insertExpense(ExpenseBean bean);
 	
 	/** 목록 수정 **/
