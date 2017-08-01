@@ -26,10 +26,11 @@
 			ex.PLACE AS Place,
 			ex.MEMO AS Memo,
 			ex.MONEY_ID AS Money_Id,
-			ex.DATE AS Date
+			ex.DATE AS Date,
+			ex.USER_ID AS userId
 			
 		from EXPENSE ex LEFT OUTER JOIN USER u ON ex.USER_ID = u.USER_ID
-		where u.USER_ID = #{userId}
+		where u.USER_ID = #{userId} AND ex.SEX = #{sex}
 	</select>
 	
 	<!-- 사용내역 등록  -->

@@ -50,10 +50,14 @@ public class ExpenseController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 
 		try {
-			List<ExpenseBean> list = ExpenseDao.selectExpenseList(mbean);
+			mbean.setSex("Boy");
+			List<ExpenseBean> boyList = ExpenseDao.selectExpenseList(mbean);
+			mbean.setSex("Girl");
+			List<ExpenseBean> girlList = ExpenseDao.selectExpenseList(mbean);
 
 			resMap.put("result", "ok");
-			resMap.put("ExpenseList", list);
+			resMap.put("ExpenseBoyList", boyList);
+			resMap.put("ExpenseGirlList", girlList);
 
 		} catch(Exception e) {
 			e.printStackTrace();
