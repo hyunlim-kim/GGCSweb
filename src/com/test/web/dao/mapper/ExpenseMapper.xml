@@ -30,8 +30,26 @@
 			ex.USER_ID AS userId
 			
 		from EXPENSE ex LEFT OUTER JOIN USER u ON ex.USER_ID = u.USER_ID
-		where u.USER_ID = #{userId} AND ex.SEX = #{sex}
+		where u.USER_ID = #{userId} AND ex.SEX = #{sex} AND ex.DATE = #{date}
 	</select>
+	
+	<select id="selectExpenseMonthList" resultType="ExpenseBean" parameterType="ExpenseBean">
+		select
+			ex.SEX AS Sex,
+			ex.MONEY AS Money,
+			SUM(ex.MONEY)    AS SumMoney,
+			ex.DETAIL AS Detail,
+			ex.PLACE AS Place,
+			ex.MEMO AS Memo,
+			ex.MONEY_ID AS Money_Id,
+			ex.DATE AS Date,
+			ex.USER_ID AS userId,
+			DAY(ex.DATE)     AS Day
+			
+		from EXPENSE ex LEFT OUTER JOIN USER u ON ex.USER_ID = u.USER_ID
+		where u.USER_ID = #{userId} AND ex.SEX = #{sex} AND ex.DATE LIKE CONCAT(#{date}, '%') GROUP BY DAY ORDER BY Day;
+	</select>
+	
 	
 	<!-- 사용내역 등록  -->
 	<insert id="insertExpense" parameterType="ExpenseBean">

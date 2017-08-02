@@ -9,6 +9,21 @@ public class ExpenseBean extends UserBean{
 	private String Date;
 	private String Memo;
 	private String Money_Id;
+	private String SumMoney;
+	
+	public String getSumMoney() {
+		return SumMoney;
+	}
+	public void setSumMoney(String sumMoney) {
+		SumMoney = sumMoney;
+	}
+	public String getDay() {
+		return Day;
+	}
+	public void setDay(String day) {
+		Day = day;
+	}
+	private String Day;
 	
 	public String getSex() {
 		return Sex;

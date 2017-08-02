@@ -21,5 +21,7 @@ public interface ExpenseDao {
 	/** 목록 삭제 **/
 	public int deleteExpense(ExpenseBean bean);
 	
+	/** 목록 월별 조화**/
+	public List<ExpenseBean> selectExpenseMonthList(ExpenseBean bean);
 	
 }

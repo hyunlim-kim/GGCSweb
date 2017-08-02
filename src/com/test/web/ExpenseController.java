@@ -66,6 +66,34 @@ public class ExpenseController {
 
 		return resMap;
 	}
+	
+	//DB --> Bean ---> JSON
+		//회원 목록 부분 
+		@RequestMapping("/rest/selectExpenseMonthList")
+		@ResponseBody
+		public Map<String, Object> selectExpenseMonthList(ExpenseBean mbean) {
+
+			Map<String, Object> resMap = new HashMap<String, Object>();
+
+			try {
+				mbean.setSex("Boy");
+				List<ExpenseBean> boyList = ExpenseDao.selectExpenseMonthList(mbean);
+				mbean.setSex("Girl");
+				List<ExpenseBean> girlList = ExpenseDao.selectExpenseMonthList(mbean);
+
+				resMap.put("result", "ok");
+				resMap.put("ExpenseBoyList", boyList);
+				resMap.put("ExpenseGirlList", girlList);
+
+			} catch(Exception e) {
+				e.printStackTrace();
+				resMap.put("result", "fail");
+			}
+
+			return resMap;
+		}
+	
+	
 
 
 	//DB --> Bean ---> JSON
