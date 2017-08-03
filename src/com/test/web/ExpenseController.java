@@ -156,7 +156,7 @@ public class ExpenseController {
 	//회원 삭제부분 
 	@RequestMapping("/rest/deleteExpense")
 	@ResponseBody
-	public Map<String, Object> deleteUser(ExpenseBean mBean) {
+	public Map<String, Object> deleteExpense(ExpenseBean mBean) {
 
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
@@ -169,7 +169,7 @@ public class ExpenseController {
 				resMap.put("resultMsg", "삭제에 성공 하였습니다.");
 			}
 			else {
-				resMap.put("resultMsg", "존재하지 않는 USER_ID 입니다.");
+				resMap.put("resultMsg", "삭제에 실패 하였습니다. ");
 			}
 		} 
 		catch(Exception e) {
